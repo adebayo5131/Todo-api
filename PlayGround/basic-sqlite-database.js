@@ -27,12 +27,12 @@ var Todo = sequelize.define('todo',{
 });
 
 sequelize.sync({
-   // force: true
+    //force: true  // This helps to ensure all your todo Items are retained when an error occurs
 }).then(function(){
     console.log('Everything is syned');
 
 
-    Todo.findById(3).then(function(todo){
+    Todo.findById(1).then(function(todo){
 
         if(todo){
                 
@@ -48,7 +48,7 @@ sequelize.sync({
             
     })
 
-   /*  Todo.create({
+    /* Todo.create({
 
         description: "Clean my desk",
         completed: false
@@ -56,7 +56,7 @@ sequelize.sync({
            return Todo.create({
                description:'Clean the floor'
            }).then(function(){
-               //return Todo.findById(1)
+              
 
                return Todo.findAll({
 
