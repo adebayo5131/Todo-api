@@ -39,13 +39,20 @@ app.get('/todos', function (req, res) {
 // GET /todos/:id
 app.get('/todos/:id', function (req, res) {
 	var todoId = parseInt(req.params.id, 10);
-	var matchedTodo = _.findWhere(todos, {id: todoId});
+	 db.todo.findById(todoId).then(function(todo){
 
-	if (matchedTodo) {
-		res.json(matchedTodo);
-	} else {
-		res.status(404).send();
-	}
+		if(!!todo){
+
+               res.json(todo.toJSON());
+		}
+		else{
+			res.status(404).send();
+		}
+	 }, function(e){
+		res.status(500).send();
+
+
+	 })
 });
 
 // POST /todos
@@ -102,7 +109,7 @@ app.put('/todos/:id', function (req, res) {
 	_.extend(matchedTodo, validAttributes);
 	res.json(matchedTodo);
 });
-q
+
 db.sequelize.sync().then(function (){
 
 
