@@ -14,7 +14,7 @@ app.get('/', function(req, res) {
 	res.send('Todo API Root');
 });
 
-/* // GET /todos?completed=false&q=work
+// GET /todos?completed=false&q=work
 app.get('/todos', function(req, res) {
 	var query = req.query;
 	var where = {};
@@ -114,7 +114,7 @@ app.put('/todos/:id', function(req, res) {
 	}, function() {
 		res.status(500).send();
 	});
-}); */
+});
 
 db.sequelize.sync().then(function() {
 	app.listen(PORT, function() {
